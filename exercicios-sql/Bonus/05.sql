@@ -1,1 +1,16 @@
-DELETE FROM clientes WHERE nome='Orlando Pequeno Jesus';
+SELECT
+    CL.id,
+    CL.nome,
+    CL.cpf
+FROM
+    clientes CL
+WHERE
+    CL.id IN
+    (
+        SELECT
+            CO.id_cliente
+        FROM
+            compras CO
+        WHERE
+            CL.id = CO.id_cliente
+    );
